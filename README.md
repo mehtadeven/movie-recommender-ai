@@ -1,5 +1,7 @@
 # 🎬 Movie Recommender AI
 
+
+![Banner](assets/banner.svg)
 ![Python](https://img.shields.io/badge/Python-3.10+-blue) ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-orange) ![Status](https://img.shields.io/badge/status-working-brightgreen)
 
 A **content-based recommendation system**: give it a movie you like, and it suggests similar ones — the same core idea behind Netflix and Spotify recommendations, in a small, readable project.
