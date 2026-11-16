@@ -1,0 +1,112 @@
+/* Movie Recommender - browser demo styles.
+   Palette: navy #0B3C5D, cream #F7F1E1, gold #E3A82B. */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px 16px;
+  font-family: Georgia, "Times New Roman", serif;
+  background: #0b3c5d;
+  color: #1c2733;
+}
+
+.card {
+  max-width: 640px;
+  margin: 0 auto;
+  background: #f7f1e1;
+  border-radius: 12px;
+  padding: 28px 24px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+h1 {
+  margin: 0 0 8px;
+  color: #0b3c5d;
+  font-size: 1.8rem;
+}
+
+.tagline {
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  color: #0b3c5d;
+  margin-bottom: 6px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #0b3c5d;
+  border-radius: 8px;
+  background: #ffffff;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #0b3c5d;
+  font-size: 1.2rem;
+  margin: 0 0 10px;
+}
+
+.results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.results li {
+  background: #ffffff;
+  border-left: 5px solid #e3a82b;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.results .title {
+  font-weight: bold;
+}
+
+.results .meta {
+  color: #5a6a78;
+  font-size: 0.9rem;
+}
+
+.results .bar {
+  display: block;
+  height: 6px;
+  background: #e8e0cb;
+  border-radius: 3px;
+  margin: 8px 0 4px;
+}
+
+.results .bar span {
+  display: block;
+  height: 100%;
+  background: #e3a82b;
+  border-radius: 3px;
+}
+
+.results .score {
+  font-size: 0.85rem;
+  color: #0b3c5d;
+}
+
+.note {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #44545f;
+}
+
+.note a {
+  color: #0b3c5d;
+  font-weight: bold;
+}
