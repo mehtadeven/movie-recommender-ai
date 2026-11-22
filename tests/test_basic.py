@@ -22,9 +22,16 @@ def model():
     return build_model(CSV_PATH)
 
 
-def test_dataset_loads_48_movies(model):
+def test_dataset_loads_60_movies(model):
     df, _ = model
-    assert len(df) == 48
+    assert len(df) == 60
+
+
+def test_new_films_are_in_the_dataset(model):
+    df, similarity = model
+    for title in ["Dune", "The Godfather", "Whiplash", "Tumbbad"]:
+        assert title in set(df["title"])
+        assert recommend(title, df, similarity)  # each returns picks
 
 
 def test_recommendations_for_3_idiots_include_chhichhore(model):

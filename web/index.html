@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Recommender AI — Browser Demo</title>
+  <meta name="description" content="Pick a film you like and get five similar titles. TF-IDF + cosine similarity running entirely in your browser — no install, no server.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <h1>Movie Recommender AI</h1>
+    <p class="tagline">
+      Pick a film you like. This page recommends five similar titles using the
+      same TF-IDF + cosine similarity method as the Python version — computed
+      live in your browser, no install and no server.
+    </p>
+
+    <label for="movie-select">Because you liked…</label>
+    <select id="movie-select"></select>
+
+    <h2>You may also like</h2>
+    <ol id="results" class="results"></ol>
+
+    <p class="note">
+      Dataset: 60 Indian and international films with hand-written genre and
+      keyword tags, generated from <code>data/movies.csv</code> by
+      <code>gen_web_data.py</code>. Built by Mehta Deven —
+      <a href="https://github.com/mehtadeven/movie-recommender-ai">source on GitHub</a>.
+    </p>
+  </main>
+
+  <script src="movies-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
