@@ -54,7 +54,8 @@ function similarity(vectorA, vectorB) {
 }
 
 // Return the top N most similar movies to the named one.
-function recommend(title, movies, vectors, topN = 5) {
+// Like recommend.py's --genre flag, an optional genre keeps only films of that genre.
+function recommend(title, movies, vectors, topN = 5, genre = null) {
   const index = movies.findIndex(
     (movie) => movie.title.toLowerCase() === title.toLowerCase()
   );
@@ -63,6 +64,7 @@ function recommend(title, movies, vectors, topN = 5) {
   const scored = movies
     .map((movie, i) => ({ movie, score: similarity(vectors[index], vectors[i]) }))
     .filter((entry) => entry.movie.title !== movies[index].title)
+    .filter((entry) => !genre || entry.movie.genres.toLowerCase().includes(genre.toLowerCase()))
     .sort((a, b) => b.score - a.score);
   return scored.slice(0, topN);
 }
@@ -71,9 +73,12 @@ function recommend(title, movies, vectors, topN = 5) {
 if (typeof document !== "undefined") {
   const vectors = buildVectors(MOVIES);
   const select = document.getElementById("movie-select");
+  const genreSelect = document.getElementById("genre-select");
+  const topSelect = document.getElementById("top-select");
   const list = document.getElementById("results");
+  const picked = document.getElementById("picked");
 
-  // Fill the dropdown with all 60 titles, sorted A-Z.
+  // Fill the dropdown with every title, sorted A-Z.
   const sorted = [...MOVIES].sort((a, b) => a.title.localeCompare(b.title));
   for (const movie of sorted) {
     const option = document.createElement("option");
@@ -82,25 +87,51 @@ if (typeof document !== "undefined") {
     select.appendChild(option);
   }
 
+  // Genre filter options, taken from the dataset itself.
+  const genres = [...new Set(MOVIES.flatMap((m) => m.genres.split(" ")))].sort();
+  for (const genre of genres) {
+    const option = document.createElement("option");
+    option.value = genre;
+    option.textContent = genre;
+    genreSelect.appendChild(option);
+  }
+
+  document.getElementById("film-count").textContent = MOVIES.length;
+
+  function tagChips(movie) {
+    return (movie.genres + " " + movie.keywords)
+      .split(" ")
+      .map((t) => `<span class="tag">${t}</span>`)
+      .join("");
+  }
+
   function showRecommendations() {
-    const picks = recommend(select.value, MOVIES, vectors, 5);
+    const movie = MOVIES.find((m) => m.title === select.value);
+    picked.innerHTML = `<div class="pick-title"></div><div class="tags">${tagChips(movie)}</div>`;
+    picked.querySelector(".pick-title").textContent = `${movie.title} · ${movie.year}`;
+
+    const picks = recommend(select.value, MOVIES, vectors, +topSelect.value, genreSelect.value || null);
     list.innerHTML = "";
+    if (!picks.length) list.innerHTML = '<li class="empty">No films of that genre in the dataset.</li>';
+    const pickedTags = new Set((movie.genres + " " + movie.keywords).toLowerCase().split(" "));
     for (const pick of picks) {
       const item = document.createElement("li");
       const percent = Math.round(pick.score * 1000) / 10;
+      const shared = [...new Set((pick.movie.genres + " " + pick.movie.keywords).toLowerCase().split(" "))]
+        .filter((t) => pickedTags.has(t));
       item.innerHTML =
-        `<span class="title"></span> <span class="meta"></span>` +
-        `<span class="bar"><span style="width:${percent}%"></span></span>` +
-        `<span class="score">${percent}% similar</span>`;
+        `<div class="line"><span class="title"></span><span class="score">${percent}% similar</span></div>` +
+        `<span class="bar"><span style="width:${(pick.score / picks[0].score) * 100}%"></span></span>` +
+        `<span class="meta"></span>`;
       item.querySelector(".title").textContent = pick.movie.title;
       item.querySelector(".meta").textContent =
-        `${pick.movie.year} · ${pick.movie.genres}`;
+        `${pick.movie.year} · ${pick.movie.genres}` + (shared.length ? ` · shares: ${shared.join(", ")}` : "");
       list.appendChild(item);
     }
   }
 
   select.value = "3 Idiots";
-  select.addEventListener("change", showRecommendations);
+  for (const el of [select, genreSelect, topSelect]) el.addEventListener("change", showRecommendations);
   showRecommendations();
 }
 

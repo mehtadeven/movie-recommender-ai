@@ -2,7 +2,9 @@
 
 # Movie Recommender AI
 
-![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white) ![Recommender](https://img.shields.io/badge/Type-Recommendation%20System-ff69b4) ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) ![Stars](https://img.shields.io/github/stars/mehtadeven/movie-recommender-ai?style=social)
+[![Live demo](https://img.shields.io/badge/Live%20demo-try%20it%20in%20your%20browser-22d3ee?logo=googlechrome&logoColor=white)](https://mehtadeven.github.io/movie-recommender-ai/) ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white) ![Recommender](https://img.shields.io/badge/Type-Recommendation%20System-ff69b4) ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) ![Stars](https://img.shields.io/github/stars/mehtadeven/movie-recommender-ai?style=social)
+
+**▶ [Try the live demo](https://mehtadeven.github.io/movie-recommender-ai/)** — it runs in your browser, nothing to install.
 
 A **content-based recommendation engine**: give it a film you like and it returns the five most similar titles from its catalogue — the same core mechanism behind the recommendation rows of major streaming platforms, implemented transparently in a few dozen lines.
 
@@ -44,6 +46,8 @@ Because you liked 'Drishyam':
 *Real run of `python recommend.py "3 Idiots"` — the five most similar films from the 60-film catalogue.*
 
 ## Try it in your browser (no install)
+
+**Live: [mehtadeven.github.io/movie-recommender-ai](https://mehtadeven.github.io/movie-recommender-ai/)** — pick a film, filter by genre, choose how many picks. Every push to `main` redeploys it through [`.github/workflows/pages.yml`](.github/workflows/pages.yml).
 
 The [`web/`](web/) folder is a standalone browser version of this recommender — plain HTML, CSS and JavaScript, no frameworks and nothing to install. It uses the same 60 films and the same TF-IDF + cosine similarity method, computed live in your browser, and gives the same top pick for "3 Idiots" (Chhichhore) as the Python version.
 

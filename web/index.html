@@ -3,32 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Movie Recommender AI — Browser Demo</title>
-  <meta name="description" content="Pick a film you like and get five similar titles. TF-IDF + cosine similarity running entirely in your browser — no install, no server.">
+  <title>Movie Recommender AI — Live Demo · Deven Mehta</title>
+  <meta name="description" content="Pick a film you like and get similar titles. TF-IDF + cosine similarity running entirely in your browser — no install, no server.">
+  <meta property="og:title" content="Movie Recommender AI — Live Demo">
+  <meta property="og:description" content="Content-based recommendations with TF-IDF and cosine similarity, running in your browser.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="card">
-    <h1>Movie Recommender AI</h1>
-    <p class="tagline">
-      Pick a film you like. This page recommends five similar titles using the
-      same TF-IDF + cosine similarity method as the Python version — computed
-      live in your browser, no install and no server.
-    </p>
+  <header class="topbar">
+    <a class="brand" href="https://mehtadeven.github.io/">Deven<span>.</span>Mehta</a>
+    <nav>
+      <a href="https://mehtadeven.github.io/#projects">← All projects</a>
+      <a href="https://github.com/mehtadeven/movie-recommender-ai">Source code ↗</a>
+    </nav>
+  </header>
 
-    <label for="movie-select">Because you liked…</label>
-    <select id="movie-select"></select>
+  <main class="wrap">
+    <section class="hero">
+      <p class="eyebrow">Project 05 · Recommender systems · Live demo</p>
+      <h1>Movie <span class="grad">Recommender</span></h1>
+      <p class="lede">Pick a film you like. The page recommends similar titles using the same TF-IDF + cosine
+        similarity method as the Python version — computed live in your browser, no install and no server.</p>
+      <div class="chips">
+        <span class="chip info">content-based filtering</span>
+        <span class="chip info">TF-IDF + cosine similarity</span>
+        <span class="chip"><span id="film-count">60</span> Indian &amp; international films</span>
+      </div>
+    </section>
 
-    <h2>You may also like</h2>
-    <ol id="results" class="results"></ol>
+    <section class="card">
+      <div class="controls">
+        <div class="ctl-main">
+          <label for="movie-select">Because you liked…</label>
+          <select id="movie-select"></select>
+        </div>
+        <div>
+          <label for="genre-select">Only this genre</label>
+          <select id="genre-select"><option value="">Any genre</option></select>
+        </div>
+        <div>
+          <label for="top-select">How many</label>
+          <select id="top-select">
+            <option value="3">3</option>
+            <option value="5" selected>5</option>
+            <option value="8">8</option>
+          </select>
+        </div>
+      </div>
+      <div id="picked" class="picked"></div>
+    </section>
 
-    <p class="note">
-      Dataset: 60 Indian and international films with hand-written genre and
-      keyword tags, generated from <code>data/movies.csv</code> by
-      <code>gen_web_data.py</code>. Built by Mehta Deven —
-      <a href="https://github.com/mehtadeven/movie-recommender-ai">source on GitHub</a>.
-    </p>
+    <section class="card" aria-live="polite">
+      <h2>You may also like</h2>
+      <p class="sub">Ranked by cosine similarity of the films' genre + keyword tags.</p>
+      <ol id="results" class="results"></ol>
+    </section>
+
+    <section class="card">
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li><b>Tags</b> — every film has hand-written genre and keyword tags in <code>data/movies.csv</code>.</li>
+        <li><b>TF-IDF</b> — turns each film's tags into a vector; rare, specific tags weigh more.</li>
+        <li><b>Cosine similarity</b> — measures the angle between two films' vectors.</li>
+        <li><b>Recommend</b> — the smallest angles to your pick win. No user history needed.</li>
+      </ol>
+      <p class="note">Python version: <code>python recommend.py "3 Idiots" --genre Comedy --top 3</code>. The film data here is generated from the same CSV by <code>gen_web_data.py</code>.</p>
+    </section>
   </main>
+
+  <footer class="site">
+    <span>Built by <a href="https://mehtadeven.github.io/">Deven Mehta</a> · AI/ML builder · Ahmedabad</span>
+    <a href="https://github.com/mehtadeven/movie-recommender-ai">github.com/mehtadeven/movie-recommender-ai</a>
+  </footer>
 
   <script src="movies-data.js"></script>
   <script src="app.js"></script>
