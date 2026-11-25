@@ -1,10 +1,14 @@
-![Movie Recommender AI](assets/banner.svg)
+[![Movie Recommender — try the live demo](assets/readme/banner.png)](https://mehtadeven.github.io/movie-recommender-ai/)
 
 # Movie Recommender AI
 
 [![Live demo](https://img.shields.io/badge/Live%20demo-try%20it%20in%20your%20browser-22d3ee?logo=googlechrome&logoColor=white)](https://mehtadeven.github.io/movie-recommender-ai/) ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white) ![Recommender](https://img.shields.io/badge/Type-Recommendation%20System-ff69b4) ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) ![Stars](https://img.shields.io/github/stars/mehtadeven/movie-recommender-ai?style=social)
 
-**▶ [Try the live demo](https://mehtadeven.github.io/movie-recommender-ai/)** — it runs in your browser, nothing to install.
+<p align="center">
+  <a href="https://mehtadeven.github.io/movie-recommender-ai/"><b>▶ Try the live demo</b></a> &nbsp;·&nbsp;
+  <a href="#how-it-works">How it works</a> &nbsp;·&nbsp;
+  <a href="https://mehtadeven.github.io/">Portfolio</a>
+</p>
 
 A **content-based recommendation engine**: give it a film you like and it returns the five most similar titles from its catalogue — the same core mechanism behind the recommendation rows of major streaming platforms, implemented transparently in a few dozen lines.
 
@@ -46,6 +50,10 @@ Because you liked 'Drishyam':
 *Real run of `python recommend.py "3 Idiots"` — the five most similar films from the 60-film catalogue.*
 
 ## Try it in your browser (no install)
+
+[![Screenshot of the Movie Recommender live demo](assets/readme/demo.png)](https://mehtadeven.github.io/movie-recommender-ai/)
+
+**Design:** a *cinema night* theme — velvet curtains, a marquee sign with chasing light bulbs, Bebas Neue + DM Sans, a ticket-stub control panel and film-strip result cards.
 
 **Live: [mehtadeven.github.io/movie-recommender-ai](https://mehtadeven.github.io/movie-recommender-ai/)** — pick a film, filter by genre, choose how many picks. Every push to `main` redeploys it through [`.github/workflows/pages.yml`](.github/workflows/pages.yml).
 
